@@ -18,11 +18,20 @@ public class BaseTests {
 
 
     @BeforeClass
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+    public void setUp() {
+        String driverExtention = "";
+        if (System.getenv("RUNNER_OS") != null) {
+            driverExtention = "-linux";
+            System.setProperty("webdriver.chrome.driver", "resources/chromedriver" + driverExtention);
+        } else {
+            System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+        }
 
-        ChromeOptions o= new ChromeOptions();
-        o.addArguments("--incognito");
+
+        ChromeOptions o = new ChromeOptions();
+        boolean headless = Boolean.parseBoolean(System.getenv("HEADLESS_CHROME")) | false;
+        o.setHeadless(headless);
+        //o.addArguments("--incognito");
         DesiredCapabilities c = DesiredCapabilities.chrome();
         c.setCapability(ChromeOptions.CAPABILITY, o);
 
@@ -32,12 +41,12 @@ public class BaseTests {
         //Provide a handler to the home page, from the framework level -->
         homePage = new HomePage(driver);
         System.out.println(driver.getTitle());
-        loginPage= new LoginPage(driver);
+        loginPage = new LoginPage(driver);
 
     }
 
     @AfterClass
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
