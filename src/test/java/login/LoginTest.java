@@ -14,7 +14,7 @@ public class LoginTest extends BaseTests {
     public void testSucessfullLogin(){
         LoginPage loginPage=  homePage.clickFormAuthentication();
         loginPage.setUsernameField("tomsmith");
-        loginPage.setPasswordField("SuperSecretPassword!");
+        loginPage.setPasswordField("SuperSecretPassword!!");
         SecureAreaPage secureAreaPage =  loginPage.clickLoginButton();
         //assertEquals(secureAreaPage.getAlertText(),"You logged into a secure area!", "Alert text is incorrect");
         assertTrue(secureAreaPage.getAlertText().contains("You logged into a secure area!"), "Alert text is incorrect");
