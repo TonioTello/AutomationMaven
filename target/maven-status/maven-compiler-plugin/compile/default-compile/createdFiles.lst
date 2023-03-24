@@ -1,0 +1,6 @@
+Pages\LoginPage.class
+Pages\AlertsPage.class
+Pages\HomePage.class
+Pages\WysiwygEditorPage.class
+Pages\DropdownPage.class
+Pages\SecureAreaPage.class
